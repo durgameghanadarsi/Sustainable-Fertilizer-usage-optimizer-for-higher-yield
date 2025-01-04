@@ -4,7 +4,7 @@ def home_page():
     st.markdown(
         """
         <div style="text-align: center;">
-            <h1>Sustainable Fertilizer Usage Optimizer for Higher Yield (అధిక దిగుబడి కోసం స్థిరమైన ఎరువుల వినియోగ ఆప్టిమైజర్)</h1>
+            <h1>Sustainable Fertilizer Usage Optimizer for Higher Yield</h1>
         </div>
         """,
         unsafe_allow_html=True
