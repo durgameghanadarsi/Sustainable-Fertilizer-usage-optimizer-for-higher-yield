@@ -1,7 +1,5 @@
 streamlit==1.30.0
 pandas==2.0.0
-sqlite3
 streamlit_option_menu==0.3.6
-pickle
 scikit-learn==1.2.2
 numpy==1.26.4
