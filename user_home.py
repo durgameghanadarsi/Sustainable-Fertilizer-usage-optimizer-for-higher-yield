@@ -48,11 +48,10 @@ def seasonal():
     crops=df['Crop'].unique()
     k=str(k)
     crop_images=pd.read_csv('Crops.csv')
-    st.markdown('---')
     crop_images=crop_images.set_index('Crop')
     col1, col2, col3=st.columns([5,5,5])
     if col2.button('Submit'):
-        st.text("")
+        st.markdown('---')
         try:
             for i in range(0,len(crops),3):
                 with col1:
