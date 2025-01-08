@@ -52,6 +52,7 @@ def seasonal():
     crop_images=crop_images.set_index('Crop')
     col1, col2, col3=st.columns([5,5,5])
     if col2.button('Submit'):
+        st.text("")
         try:
             for i in range(0,len(crops),3):
                 with col1:
