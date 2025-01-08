@@ -95,6 +95,8 @@ def fertilizer():
     a=temp.split('°')[0]
     humd=other_data.find('°')
     b=other_data[humd-3:humd]
+    if b=='':
+        b=float(64.57)
     col1,col2,col3= st.columns([5,5,5])
     with col1:
         c=st.number_input('Moisture',min_value=42.8,max_value=100.0)
