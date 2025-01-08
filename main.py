@@ -12,21 +12,7 @@ init_db()
 st.set_page_config(page_title = 'Agriculture', layout='wide', page_icon="🌾")
 
 # Add background image to the main page
-st.markdown(
-    """
-    <style>
-    /* Apply background image to the main content area */
-    .main {
-        background-image: url('https://img.freepik.com/free-vector/white-abstract-background_23-2148806276.jpg?semt=ais_hybrid');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        min-height: 100vh;  /* Ensure the background covers the whole screen */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 
 
 # Session State Initialization
@@ -54,6 +40,7 @@ if st.session_state["page"] == "Home":
                 },
             },
         )
+        st.image('https://www.freeiconspng.com/uploads/garden-flowers-png-12.png')
 
     # Render the selected page
     if selected_page == "Home":
