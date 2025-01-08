@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
-import pickle
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
@@ -114,7 +114,7 @@ def fertilizer():
     if col5.button('Predict'):
         col1, col2, col3 = st.columns(3)
         data = np.array([[a,b,c,soil.index(d),crop.index(e),f,g,h]])
-        model=pickle.load(open('classifier.pkl','rb'))
+        model=joblib.load('fertilizer.pkl')
         res=model.predict(data)
         d1=pd.read_csv('fertilizer.csv')
         #get the image of the fertilizer
