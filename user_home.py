@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
-import joblib
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
@@ -27,11 +27,13 @@ def seasonal():
         <style>
         /* Apply background image to the main content area */
         .main {
-            background-image: url('https://i.pinimg.com/736x/13/72/15/13721520f35334eb679bd416c3b41b0c.jpg');
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/036/226/390/small_2x/ai-generated-nature-landscapes-background-free-photo.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             min-height: 100vh;  /* Ensure the background covers the whole screen */
+            background-color: rgba(255, 255, 255, 0.7); /* Add a semi-transparent overlay */
+            background-blend-mode: overlay; /* Blend the image with the overlay */
         }
         </style>
         """,
@@ -49,8 +51,8 @@ def seasonal():
     k=str(k)
     crop_images=pd.read_csv('Crops.csv')
     crop_images=crop_images.set_index('Crop')
-    col1, col2, col3=st.columns([5,5,5])
-    if col2.button('Submit'):
+    col1, col2, col3=st.columns([10,5,10])
+    if col2.button('Submit',type='primary'):
         st.markdown('---')
         col1,col2,col3=st.columns([5,5,5])
         try:
@@ -69,60 +71,68 @@ def seasonal():
                         st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i+2]}</h5>", unsafe_allow_html=True)
         except:
             pass
-def fertilizer():
-    st.markdown(
-        """
-        <style>
-        /* Apply background image to the main content area */
-        .main {
-            background-image: url('https://img.freepik.com/free-vector/watercolor-pastel-color-pattern_23-2149413430.jpg?semt=ais_hybrid');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;  /* Ensure the background covers the whole screen */
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
-    st.markdown(f"<h1 style='text-align: center; color:blue;'>Fertilizer Recommendation System</h1>", unsafe_allow_html=True)
-    st.markdown('---')
-    fertilizer=['10-10-10','10-26-26','14-14-14','14-35-14','15-15-15','17-17-17','20-20','28-28','DAP','Potassium chloride','Potassium sulfate.','Superphosphate','TSP','Urea']
-    soil=['Black','Clayey','Loamy','Red','Sandy']
-    crop=['Barley','Cotton','Ground Nuts','Maize','Millets','Oil seeds','Paddy','Pulses','Sugarcane','Tobacco','Wheat','coffee','kidneybeans','orange','pomegranate','rice','watermelon']
-    col1, col2,col3= st.columns([5,5,5])
-    user=st.session_state['user']
-    location=user[3]
-    a=temp.split('°')[0]
-    humd=other_data.find('°')
-    b=float(50.00)
-    col1,col2,col3= st.columns([5,5,5])
-    with col1:
-        c=st.number_input('Moisture',min_value=25.0,max_value=100.0)
-    with col2:
-        d=st.selectbox('Soil Type',('Black','Clayey','Loamy','Red','Sandy'))
-    with col3:
-        e=st.selectbox('Crop Type',('Barley','Cotton','Ground Nuts','Maize','Millets','Oil seeds','Paddy','Pulses','Sugarcane','Tobacco','Wheat','coffee','kidneybeans','orange','pomegranate','rice','watermelon'))
-    col1, col2,col3= st.columns([5,5,5])
-    with col1:
-        f=st.number_input('Enter N',min_value=00.00)
-    with col2:
-        g=st.number_input('Enter P',min_value=00.00)
-    with col3:
-        h=st.number_input('Enter K',min_value=00.00)
-    
-    col4, col5, col6 = st.columns([12,5,10])
-    if col5.button('Predict'):
-        col1, col2, col3 = st.columns(3)
-        data = np.array([[a,b,c,soil.index(d),crop.index(e),f,g,h]])
-        model=joblib.load('fertilizer.pkl')
-        res=model.predict(data)
-        d1=pd.read_csv('fertilizer.csv')
-        #get the image of the fertilizer
-        d1=d1.set_index('fertilizer')
-        col1,col2,col3=st.columns([5,5,5])
-        col2.image(d1.loc[fertilizer[res[0]],'image'],width=300)
+def fertilizer():
+    try:
+        st.markdown(
+            """
+            <style>
+            /* Apply background image to the main content area */
+            .main {
+                background-image: url('https://eos.com/wp-content/uploads/2023/11/components-of-different-types-of-fertilizers.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                min-height: 100vh;  /* Ensure the background covers the whole screen */
+                background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent overlay */
+                background-blend-mode: overlay; /* Blend the image with the overlay */
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(f"<h1 style='text-align: center; color:blue;'>Fertilizer Recommendation System</h1>", unsafe_allow_html=True)
+        st.markdown('---')
+        fertilizer=['10-10-10','10-26-26','14-14-14','14-35-14','15-15-15','17-17-17','20-20','28-28','DAP','Potassium chloride','Potassium sulfate.','Superphosphate','TSP','Urea']
+        soil=['Black','Clayey','Loamy','Red','Sandy']
+        crop=['Barley','Cotton','Ground Nuts','Maize','Millets','Oil seeds','Paddy','Pulses','Sugarcane','Tobacco','Wheat','coffee','kidneybeans','orange','pomegranate','rice','watermelon']
+        col1, col2,col3= st.columns([5,5,5])
+        user=st.session_state['user']
+        location=user[3]
+        a=temp.split('°')[0]
+        humd=other_data.find('°')
+        b=other_data[humd-3:humd]
+        if b=='':
+            b=float(64.98)
+        col1,col2,col3= st.columns([5,5,5])
+        with col1:
+            c=st.number_input('Moisture',min_value=42.8,max_value=100.0)
+        with col2:
+            d=st.selectbox('Soil Type',('Black','Clayey','Loamy','Red','Sandy'))
+        with col3:
+            e=st.selectbox('Crop Type',('Barley','Cotton','Ground Nuts','Maize','Millets','Oil seeds','Paddy','Pulses','Sugarcane','Tobacco','Wheat','coffee','kidneybeans','orange','pomegranate','rice','watermelon'))
+        col1, col2,col3= st.columns([5,5,5])
+        with col1:
+            f=st.number_input('Enter N',min_value=0,max_value=126,value=10)
+        with col2:
+            g=st.number_input('Enter P',min_value=0,max_value=54,value=7)
+        with col3:
+            h=st.number_input('Enter K',min_value=0,max_value=59,value=8)
+        
+        col4, col5, col6 = st.columns([12,5,10])
+        if col5.button('Predict',type='primary'):
+            col1, col2, col3 = st.columns(3)
+            data = np.array([[a,b,c,soil.index(d),crop.index(e),f,g,h]])
+            model=pickle.load(open('classifier.pkl','rb'))
+            res=model.predict(data)
+            d1=pd.read_csv('fertilizer.csv')
+            #get the image of the fertilizer
+            d1=d1.set_index('fertilizer')
+            col1,col2,col3=st.columns([5,5,5])
+            col2.image(d1.loc[fertilizer[res[0]],'image'],width=300)
+    except:
+        pass
 def user_home_page():
     # Navigation menu for user dashboard
 
@@ -139,12 +149,9 @@ def user_home_page():
         )
         user=st.session_state['user']
         location=user[3]
-        col1,col2=st.columns([5,5])
-        col2.markdown(f"<h3 style='text-align: center; color:black;'>📍{location}</h3>", unsafe_allow_html=True)
-        col1,col2=st.columns([5,5])
-        col1.markdown(f"<h3 style='text-align: center; color:black;'>Temperature: {temp}</h3>", unsafe_allow_html=True)
-        col1.markdown(f"<h1 style='text-align: center; color:black;'>{sky}🌥️</h1>", unsafe_allow_html=True)
-        col2.markdown(f"<h1 style='text-align: center; color:black;'>🕟{time}</h1>", unsafe_allow_html=True)
+        col1,col2=st.columns([1,1])
+        col1.markdown(f"<h1 style='text-align: center; color:black;'>{temp}🌞</h1>", unsafe_allow_html=True)
+        col2.markdown(f"<h1 style='text-align: center; color:black;'>{sky}🌥️</h1>", unsafe_allow_html=True)
 
     if selected_tab == "Seasonal Based Crops":
         seasonal()
