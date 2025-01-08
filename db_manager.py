@@ -10,6 +10,7 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT UNIQUE,
+            location TEXT,
             password TEXT
         )
     """)
@@ -24,11 +25,11 @@ def init_db():
     conn.close()
 
 # Register a new user
-def register_user(name, email, password):
+def register_user(name, email,location, password):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     try:
-        cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (name, email, password))
+        cursor.execute("INSERT INTO users (name, email,location, password) VALUES (?, ?, ?,?)", (name, email,location, password))
         conn.commit()
         return True
     except sqlite3.IntegrityError:
