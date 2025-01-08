@@ -51,23 +51,22 @@ def seasonal():
     st.markdown('---')
     crop_images=crop_images.set_index('Crop')
     col1, col2, col3=st.columns([5,5,5])
-    if col2.button('Submit'):
-        try:
-            for i in range(0,len(crops),3):
-                with col1:
-                    if i<len(crops):
-                        st.image(crop_images.loc[crops[i],'Image'],use_column_width=True)
-                        st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i]}</h5>", unsafe_allow_html=True)
-                with col2:
-                    if i+1<len(crops):
-                        st.image(crop_images.loc[crops[i+1],'Image'],use_column_width=True)
-                        st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i+1]}</h5>", unsafe_allow_html=True)
-                with col3:
-                    if i+2<len(crops):
-                        st.image(crop_images.loc[crops[i+2],'Image'],use_column_width=True)
-                        st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i+2]}</h5>", unsafe_allow_html=True)
-        except:
-            pass
+    try:
+        for i in range(0,len(crops),3):
+            with col1:
+                if i<len(crops):
+                    st.image(crop_images.loc[crops[i],'Image'],use_column_width=True)
+                    st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i]}</h5>", unsafe_allow_html=True)
+            with col2:
+                if i+1<len(crops):
+                    st.image(crop_images.loc[crops[i+1],'Image'],use_column_width=True)
+                    st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i+1]}</h5>", unsafe_allow_html=True)
+            with col3:
+                if i+2<len(crops):
+                    st.image(crop_images.loc[crops[i+2],'Image'],use_column_width=True)
+                    st.markdown(f"<h5 style='text-align: center; color:black;'>{crops[i+2]}</h5>", unsafe_allow_html=True)
+    except:
+        pass
 def fertilizer():
     st.markdown(
         """
