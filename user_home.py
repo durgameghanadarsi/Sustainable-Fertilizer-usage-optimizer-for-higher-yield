@@ -91,6 +91,7 @@ def fertilizer():
             """,
             unsafe_allow_html=True
         )
+
         st.markdown(f"<h1 style='text-align: center; color:blue;'>Fertilizer Recommendation System</h1>", unsafe_allow_html=True)
         st.markdown('---')
         fertilizer=['10-10-10','10-26-26','14-14-14','14-35-14','15-15-15','17-17-17','20-20','28-28','DAP','Potassium chloride','Potassium sulfate.','Superphosphate','TSP','Urea']
@@ -106,7 +107,7 @@ def fertilizer():
             b=float(64.98)
         col1,col2,col3= st.columns([5,5,5])
         with col1:
-            c=st.number_input('Moisture',min_value=10,max_value=100.0,value=42.8)
+            c=st.number_input('Moisture',min_value=42.8,max_value=100.0)
         with col2:
             d=st.selectbox('Soil Type',('Black','Clayey','Loamy','Red','Sandy'))
         with col3:
