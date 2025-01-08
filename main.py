@@ -9,7 +9,7 @@ from home_page import home_page
 init_db()
 
 # Streamlit Page Config
-st.set_page_config(page_title = 'Agriculture', layout='wide', page_icon="🌾")
+st.set_page_config(page_title = 'Agriculture Recommendations', layout='wide', page_icon="🌾")
 
 # Add background image to the main page
 
