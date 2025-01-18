@@ -57,8 +57,6 @@ def register_page():
                 st.error("Password must be at least 6 characters long!")
             elif password != retype_password:
                 st.error("Passwords do not match!")
-            elif not valid_location(location):
-                st.error("Invalid Location!")
             else:
                 if register_user(name, email,location, password):
                     st.markdown(
