@@ -4,3 +4,4 @@ streamlit_option_menu==0.3.6
 scikit-learn==1.4.0
 numpy
 pyowm
+setuptools
