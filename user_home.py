@@ -5,23 +5,24 @@ import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
-import requests
-from bs4 import BeautifulSoup
 user=st.session_state['user']
 city=user[3]
-url = "https://www.google.com/search?q=" + "weather" + city
-html = requests.get(url).content
-soup = BeautifulSoup(html, 'html.parser')
-temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
-str_ = soup.find('div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
-data = str_.split('\n')
-time = data[0]
-sky = data[1]
-listdiv = soup.findAll('div', attrs={'class': 'BNeawe s3v9rd AP7Wnd'})
-strd = listdiv[5].text
-pos = strd.find('Wind')
-other_data = strd[pos:]
+import pyowm
+owm = pyowm.OWM('11081b639d8ada3e97fc695bcf6ddb20')
+try:
+    mgr = owm.weather_manager()
+    observation = mgr.weather_at_place(city)
+    weather = observation.weather
+    temp = weather.temperature('celsius')['temp']
+    humd = weather.humidity
+    sky = weather.detailed_status
+except:
+    st.write(city)
+    temp=25
+    humd=50
+    sky='Snow'
 def seasonal():
+    
     st.markdown(
         """
         <style>
@@ -100,14 +101,12 @@ def fertilizer():
         col1, col2,col3= st.columns([5,5,5])
         user=st.session_state['user']
         location=user[3]
-        a=temp.split('°')[0]
-        humd=other_data.find('°')
-        b=other_data[humd-3:humd]
-        if b=='':
-            b=float(64.98)
+        a=temp
+        b=humd
+
         col1,col2,col3= st.columns([5,5,5])
         with col1:
-            c=st.number_input('Soil Moisture',min_value=25,max_value=65,value=42)
+            c=st.number_input('Moisture',min_value=42.8,max_value=100.0)
         with col2:
             d=st.selectbox('Soil Type',('Black','Clayey','Loamy','Red','Sandy'))
         with col3:
