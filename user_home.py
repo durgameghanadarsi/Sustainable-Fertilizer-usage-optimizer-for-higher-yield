@@ -106,7 +106,7 @@ def fertilizer():
 
         col1,col2,col3= st.columns([5,5,5])
         with col1:
-            c=st.number_input('Moisture',min_value=42.8,max_value=100.0)
+            c=st.number_input('Soil Moisture',min_value=42.8,max_value=100.0)
         with col2:
             d=st.selectbox('Soil Type',('Black','Clayey','Loamy','Red','Sandy'))
         with col3:
