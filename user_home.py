@@ -106,18 +106,18 @@ def fertilizer():
 
         col1,col2,col3= st.columns([5,5,5])
         with col1:
-            c=st.number_input('Soil Moisture',min_value=42.8,max_value=100.0)
+            c=st.number_input('Soil Moisture',min_value=0,max_value=100.0,value=42.8)
         with col2:
             d=st.selectbox('Soil Type',('Black','Clayey','Loamy','Red','Sandy'))
         with col3:
             e=st.selectbox('Crop Type',('Barley','Cotton','Ground Nuts','Maize','Millets','Oil seeds','Paddy','Pulses','Sugarcane','Tobacco','Wheat','coffee','kidneybeans','orange','pomegranate','rice','watermelon'))
         col1, col2,col3= st.columns([5,5,5])
         with col1:
-            f=st.number_input('Enter N',min_value=0,max_value=126,value=10)
+            f=st.number_input('Enter N Value',min_value=0,max_value=126,value=10)
         with col2:
-            g=st.number_input('Enter P',min_value=0,max_value=54,value=7)
+            g=st.number_input('Enter P Value',min_value=0,max_value=54,value=7)
         with col3:
-            h=st.number_input('Enter K',min_value=0,max_value=59,value=8)
+            h=st.number_input('Enter K Value',min_value=0,max_value=59,value=8)
         
         col4, col5, col6 = st.columns([12,5,10])
         if col5.button('Predict',type='primary'):
