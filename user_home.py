@@ -115,9 +115,9 @@ def fertilizer():
         with col1:
             f=st.number_input('Enter N',min_value=0,max_value=126,value=10)
         with col2:
-            g=st.number_input('Enter P Value',min_value=0,max_value=54,value=7)
+            g=st.number_input('Enter P',min_value=0,max_value=54,value=7)
         with col3:
-            h=st.number_input('Enter K Value',min_value=0,max_value=59,value=8)
+            h=st.number_input('Enter K',min_value=0,max_value=59,value=8)
         
         col4, col5, col6 = st.columns([12,5,10])
         if col5.button('Predict',type='primary'):
