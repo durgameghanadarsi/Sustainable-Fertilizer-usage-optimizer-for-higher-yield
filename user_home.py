@@ -113,7 +113,7 @@ def fertilizer():
             e=st.selectbox('Crop Type',('Barley','Cotton','Ground Nuts','Maize','Millets','Oil seeds','Paddy','Pulses','Sugarcane','Tobacco','Wheat','coffee','kidneybeans','orange','pomegranate','rice','watermelon'))
         col1, col2,col3= st.columns([5,5,5])
         with col1:
-            f=st.number_input('Enter N Value',min_value=0,max_value=126,value=10)
+            f=st.number_input('Enter N',min_value=0,max_value=126,value=10)
         with col2:
             g=st.number_input('Enter P Value',min_value=0,max_value=54,value=7)
         with col3:
