@@ -3,17 +3,16 @@ import re
 from db_manager import register_user
 import requests
 from bs4 import BeautifulSoup
-
-def register_page():
-    def valid_location(city):
-        url = "https://www.google.com/search?q=" + "weather" + city
-        html = requests.get(url).content
-
-        # Getting raw data using BeautifulSoup
-        soup = BeautifulSoup(html, 'html.parser')
-        if soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}) is None:
-            return False
+import pyowm
+owm = pyowm.OWM('11081b639d8ada3e97fc695bcf6ddb20')
+def valid_location(city):
+    mgr = owm.weather_manager()
+    try:
+        observation = mgr.weather_at_place(city)
         return True
+    except:
+        return False
+def register_page():
 
     st.markdown(
         """
@@ -24,14 +23,17 @@ def register_page():
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            min-height: 100vh;  /* Ensure the background covers the whole screen */
+            background-color: rgba(255, 255, 255, 0.6);
+            background-blend-mode: overlay;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
     # Center the registration form container using Streamlit form layout
-    with st.form(key="register_form"):
+    col,col2,col3=st.columns([2,4,2])
+
+    with col2.form(key="register_form"):
         # Title
         st.title("Sign Up🔐")
 
@@ -45,7 +47,7 @@ def register_page():
         retype_password = col2.text_input("Retype Password", type="password")
 
         # Submit Button inside the form
-        register_button = st.form_submit_button("Register")
+        register_button = st.form_submit_button("Register",type='primary')
 
         # Handling form submission
         if register_button:
@@ -53,6 +55,8 @@ def register_page():
             email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
             if not re.match(email_regex, email):
                 st.error("Invalid Email!")
+            elif not valid_location(location):
+                st.error("Invalid Location!")
             elif len(password) < 6:
                 st.error("Password must be at least 6 characters long!")
             elif password != retype_password:
