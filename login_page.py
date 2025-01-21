@@ -18,7 +18,8 @@ def login_page():
         unsafe_allow_html=True
     )
     # Center the login form using Streamlit form layout
-    with st.form(key="login_form"):
+    col,col2,col3=st.columns([2,4,2])
+    with col2.form(key="login_form"):
         # Title
         st.title("Login🔓")
 
