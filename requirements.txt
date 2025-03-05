@@ -1,7 +1,8 @@
-streamlit
+streamlit==1.30.0
 pandas
-streamlit_option_menu
+streamlit-option-menu==0.3.6
 scikit-learn
 numpy
 tensorflow==2.17.0
 gdown
+pyowm==3.3.0
