@@ -1,8 +1,7 @@
 streamlit
 pandas
-sqlite3
 streamlit_option_menu
-pickle
 scikit-learn
 numpy
 tensorflow==2.17.0
+gdown
