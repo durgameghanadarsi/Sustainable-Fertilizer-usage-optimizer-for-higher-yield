@@ -431,7 +431,6 @@ def user_home_page():
                 image = img_to_array(image)
                 image = image / 255
                 image = np.expand_dims(image, axis=0)
-                st.write(model.summary())
                 result = np.argmax(model.predict(image))
                 prediction = classes[result]
                 if result == 0:
@@ -445,7 +444,6 @@ def user_home_page():
                 elif result == 4:
                     return "Red", html_content["Red"]
             except:
-                st.write(model.summary())
                 return 'Red',html_content["Red"]
 
         # Streamlit UI setup
