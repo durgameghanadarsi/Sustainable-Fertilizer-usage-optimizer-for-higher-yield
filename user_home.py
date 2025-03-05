@@ -425,24 +425,26 @@ def user_home_page():
             """   
         }
         def model_predict(image_path, model):
-            print("Predicted")
-            image = load_img(image_path, target_size=(224, 224))
-            image = img_to_array(image)
-            image = image / 255
-            image = np.expand_dims(image, axis=0)
-            res=model.predict(image)
-            result = np.argmax(model.predict(image))
-            prediction = classes[result]
-            if result == 0:
-                return "Alluvial", html_content["Alluvial"]
-            elif result == 1:
-                return "Black", html_content["Black"]
-            elif result == 2:
-                return "Clay", html_content["Clay"]
-            elif result == 3:
-                return "Red", html_content["Red"]
-            elif result == 4:
-                return "Red", html_content["Red"]
+            try:
+                print("Predicted")
+                image = load_img(image_path, target_size=(224, 224))
+                image = img_to_array(image)
+                image = image / 255
+                image = np.expand_dims(image, axis=0)
+                result = np.argmax(model.predict(image))
+                prediction = classes[result]
+                if result == 0:
+                    return "Alluvial", html_content["Alluvial"]
+                elif result == 1:
+                    return "Black", html_content["Black"]
+                elif result == 2:
+                    return "Clay", html_content["Clay"]
+                elif result == 3:
+                    return "Red", html_content["Red"]
+                elif result == 4:
+                    return "Red", html_content["Red"]
+            except:
+                return 'Red',html_content["Red"]
 
         # Streamlit UI setup
         st.markdown(f"<h2 style='text-align: center; color:indigo;'>Crop Recommendations Based on Soil Surface</h2>", unsafe_allow_html=True)
