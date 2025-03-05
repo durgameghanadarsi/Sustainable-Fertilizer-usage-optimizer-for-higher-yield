@@ -10,6 +10,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import joblib
 import gdown
 import pyowm
+import tensorflow as tf
 owm = pyowm.OWM('11081b639d8ada3e97fc695bcf6ddb20')
 from sklearn.ensemble import RandomForestRegressor
 from db_manager import change_location, fetch_details   
@@ -26,6 +27,7 @@ def download_and_load_model():
         return SoilNet
     except Exception as e:
         return None
+
 SoilNet = download_and_load_model()
 yield_model = 'yield_prediction_model.pkl'
 model_yield = joblib.load(yield_model)
@@ -474,12 +476,12 @@ def user_home_page():
 
         # File uploader inside the styled box
         col1,col2,col3=st.columns([1,6,1])
-        file = col2.file_uploader("UPLOAD SOIL IMAGES HERE", type=["jpg", "jpeg", "png"])
+        img_file = col2.file_uploader("UPLOAD SOIL IMAGES HERE", type=["jpg", "jpeg", "png"])
 
         col1,col2,col3=st.columns([3,3,1])
         button = col2.button("Predict", type="primary")
-        if file is not None and button:
-            pred, output_html = model_predict(file, SoilNet)
+        if img_file is not None and button:
+            pred, output_html = model_predict(img_file, SoilNet)
             col1,col2,col3=st.columns([1,100,1])
             # Display the prediction result and the HTML page
             col2.markdown(output_html, unsafe_allow_html=True)
