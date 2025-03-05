@@ -8,12 +8,25 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import joblib
+import gdown
 import pyowm
 owm = pyowm.OWM('11081b639d8ada3e97fc695bcf6ddb20')
 from sklearn.ensemble import RandomForestRegressor
 from db_manager import change_location, fetch_details   
 # Load the trained model
-SoilNet = load_model('model.h5')
+def download_and_load_model():
+    try:
+        file_id = '1y_epR8Az7lEzsbjJa0HELNFCmauBvsVU'  # Replace with your file ID
+        url = f'https://drive.google.com/uc?id={file_id}'
+        output = 'model.h5'
+        gdown.download(url, output, quiet=False)
+
+        # Load the model from the file
+        SoilNet = tf.keras.models.load_model('model.h5')
+        return SoilNet
+    except Exception as e:
+        return None
+SoilNet = download_and_load_model()
 yield_model = 'yield_prediction_model.pkl'
 model_yield = joblib.load(yield_model)
 user=st.session_state['user']
