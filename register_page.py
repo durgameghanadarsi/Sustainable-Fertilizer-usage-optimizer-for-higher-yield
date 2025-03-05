@@ -5,13 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import pyowm
 owm = pyowm.OWM('11081b639d8ada3e97fc695bcf6ddb20')
-def valid_location(city):
-    mgr = owm.weather_manager()
-    try:
-        observation = mgr.weather_at_place(city)
-        return True
-    except:
-        return False
+
 def register_page():
 
     st.markdown(
@@ -42,6 +36,7 @@ def register_page():
         col1,col2=st.columns(2)
         email = col1.text_input("Email")
         location = col2.text_input("Location📍")
+        otp=None
         col1, col2 = st.columns(2)
         password = col1.text_input("Password", type="password")
         retype_password = col2.text_input("Retype Password", type="password")
@@ -51,18 +46,29 @@ def register_page():
 
         # Handling form submission
         if register_button:
+            try:
+                mgr = owm.weather_manager()
+                observation = mgr.weather_at_place(location)
+                weather = observation.weather
+                temp = weather.temperature('celsius')['temp']
+                humd = weather.humidity
+                sky = weather.detailed_status
+                rain = weather.rain.get('1h', 0)
+            except:
+                temp=25
+                humd=50
+                sky='Snow'
+                rain=100
             # Validate email using regex
             email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
             if not re.match(email_regex, email):
                 st.error("Invalid Email!")
-            elif not valid_location(location):
-                st.error("Invalid Location!")
             elif len(password) < 6:
                 st.error("Password must be at least 6 characters long!")
             elif password != retype_password:
                 st.error("Passwords do not match!")
             else:
-                if register_user(name, email,location, password):
+                if register_user(name, email,location,temp,humd,sky,rain,otp, password):
                     st.markdown(
                         """
                         <div style="text-align: center; padding: 1px; background-color: green; border-radius: 1px; border: 1.5px solid black; margin-bottom: 20px;">

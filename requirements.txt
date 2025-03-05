@@ -1,7 +1,8 @@
-streamlit==1.30.0
-pandas==2.0.0
-streamlit_option_menu==0.3.6
-scikit-learn==1.4.0
+streamlit
+pandas
+sqlite3
+streamlit_option_menu
+pickle
+scikit-learn
 numpy
-pyowm
-setuptools
+tensorflow==2.17.0

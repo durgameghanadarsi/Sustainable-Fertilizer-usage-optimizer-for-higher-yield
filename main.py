@@ -4,6 +4,7 @@ from register_page import register_page
 from db_manager import init_db
 from streamlit_option_menu import option_menu
 from home_page import home_page
+from forgot_password_page import forgot_password_page
 
 # Initialize the database
 init_db()
@@ -24,8 +25,8 @@ if st.session_state["page"] == "Home":
     with st.sidebar:
         selected_page = option_menu(
             menu_title=None,
-            options=["Home", "Login", "Register"],
-            icons=["house", "box-arrow-in-right", "person-plus"],
+            options=["Home", "Login", "Register",'Forgot Password'],
+            icons=["house", "box-arrow-in-right", "person-plus",'key'],
             menu_icon="cast",
             default_index=0,
             orientation="vertical",
@@ -40,7 +41,7 @@ if st.session_state["page"] == "Home":
                 },
             },
         )
-        st.image('https://www.freeiconspng.com/uploads/garden-flowers-png-12.png')
+        st.image('https://png.pngtree.com/png-vector/20240314/ourmid/pngtree-happy-farmer-working-in-paddy-field-png-image_11949131.png')
 
     # Render the selected page
     if selected_page == "Home":
@@ -49,6 +50,8 @@ if st.session_state["page"] == "Home":
         login_page()
     elif selected_page == "Register":
         register_page()
+    elif selected_page == "Forgot Password":
+        forgot_password_page()
 
 elif st.session_state["page"] == "user_home":
     # Redirect to the user dashboard after login

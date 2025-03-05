@@ -1,0 +1,51 @@
+Crop Name,Fertilizer Used,Cost (INR),Application Frequency,Application Stage,Dosage per Acre,Water to Mix (Liters for 50 crops)
+Wheat,Urea,266,2 times,Tillering & Booting,50 kg,100
+Rice,Di-Ammonium Phosphate (DAP),1900,2 times,Pre-planting & Tillering,40 kg,120
+Maize,Urea,266,3 times,Vegetative & Silking,45 kg,90
+Sugarcane,Potassium Nitrate,2800,3 times,"Tillering, Grand Growth",50 kg,150
+Cotton,Mono Ammonium Phosphate (MAP),1850,2 times,Early Growth & Flowering,40 kg,100
+Barley,Urea,266,2 times,Tillering & Booting,35 kg,80
+Soybean,Super Phosphate,425,1 time,Pre-sowing,30 kg,70
+Groundnut,Single Super Phosphate (SSP),450,1 time,Pre-sowing,25 kg,60
+Sunflower,Zinc Sulfate,320,2 times,Vegetative & Flowering,15 kg,50
+Mustard,Urea,266,2 times,Pre-flowering & Pod Formation,30 kg,80
+Chickpea,DAP,1900,1 time,Pre-sowing,35 kg,90
+Pigeon Pea,SSP,450,1 time,Pre-sowing,30 kg,70
+Black Gram,SSP,450,1 time,Pre-sowing,25 kg,60
+Green Gram,DAP,1900,1 time,Pre-sowing,30 kg,70
+Lentil,SSP,450,1 time,Pre-sowing,20 kg,50
+Tomato,Calcium Nitrate,1100,3 times,"Vegetative, Flowering, Fruiting",40 kg,120
+Potato,Urea,266,3 times,Tuber Initiation & Growth,50 kg,130
+Onion,DAP,1900,2 times,Pre-sowing & Bulb Formation,35 kg,100
+Garlic,Urea,266,2 times,Vegetative & Bulb Formation,30 kg,80
+Cabbage,Calcium Nitrate,1100,2 times,Vegetative & Head Formation,40 kg,120
+Cauliflower,Boron,600,2 times,Vegetative & Curding,20 kg,80
+Carrot,Potassium Sulfate,1100,1 time,Pre-sowing,25 kg,90
+Radish,Urea,266,1 time,Pre-sowing,20 kg,60
+Beetroot,Potassium Nitrate,2800,2 times,Vegetative & Root Development,30 kg,100
+Brinjal,DAP,1900,2 times,Vegetative & Flowering,35 kg,120
+Chili,Calcium Nitrate,1100,3 times,"Vegetative, Flowering, Fruiting",30 kg,110
+Capsicum,Potassium Nitrate,2800,2 times,Flowering & Fruiting,35 kg,120
+Spinach,Nitrogen,320,1 time,Pre-sowing,20 kg,50
+Fenugreek,Urea,266,1 time,Pre-sowing,15 kg,40
+Coriander,SSP,450,1 time,Pre-sowing,20 kg,50
+Mint,DAP,1900,2 times,Vegetative & Growth,30 kg,90
+Pumpkin,Urea,266,2 times,Vegetative & Fruiting,35 kg,110
+Bitter Gourd,DAP,1900,2 times,Vegetative & Flowering,30 kg,100
+Bottle Gourd,Urea,266,2 times,Vegetative & Fruiting,40 kg,130
+Watermelon,Potassium Nitrate,2800,2 times,Flowering & Fruit Setting,35 kg,120
+Muskmelon,DAP,1900,2 times,Vegetative & Flowering,30 kg,110
+Cucumber,Calcium Nitrate,1100,2 times,Vegetative & Fruiting,35 kg,120
+Papaya,Urea,266,3 times,Vegetative & Fruiting,35 kg,120
+Banana,Potassium Nitrate,2800,2 times,"Vegetative, Flowering, Fruiting",50 kg,150
+Mango,Urea,266,2 times,Pre-flowering & Fruiting,30 kg,100
+Guava,DAP,1900,2 times,Vegetative & Fruiting,30 kg,110
+Pomegranate,Calcium Nitrate,1100,2 times,Flowering & Fruiting,35 kg,120
+Apple,Urea,266,2 times,Budding & Fruiting,30 kg,100
+Grapes,Potassium Nitrate,2800,3 times,"Flowering, Berry Set, Ripening",40 kg,150
+Pineapple,DAP,1900,2 times,Vegetative & Fruiting,30 kg,120
+Strawberry,Calcium Nitrate,1100,2 times,Flowering & Fruiting,40 kg,110
+Coconut,Urea,266,2 times,Vegetative & Fruiting,30 kg,130
+Arecanut,DAP,1900,2 times,Vegetative & Fruiting,30 kg,120
+Tea,Nitrogen,320,2 times,Vegetative Growth,20 kg,80
+Coffee,Potassium Sulfate,1100,2 times,Vegetative & Fruiting,30 kg,100
