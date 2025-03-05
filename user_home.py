@@ -138,8 +138,8 @@ def fertilizer():
         if col5.button('Predict',type='primary'):
             col1, col2, col3 = st.columns(3)
             data = np.array([[a,b,c,soil.index(d),crop.index(e),f,g,h]])
-            model=pickle.load(open('classifier.pkl','rb'))
-            res=model.predict(data)
+            model_1=pickle.load(open('classifier.pkl','rb'))
+            res=model_1.predict(data)
             d1=pd.read_csv('fertilizer.csv')
             #get the image of the fertilizer
             d1=d1.set_index('fertilizer')
@@ -431,6 +431,7 @@ def user_home_page():
                 image = img_to_array(image)
                 image = image / 255
                 image = np.expand_dims(image, axis=0)
+                st.write(model.summary())
                 result = np.argmax(model.predict(image))
                 prediction = classes[result]
                 if result == 0:
@@ -444,6 +445,7 @@ def user_home_page():
                 elif result == 4:
                     return "Red", html_content["Red"]
             except:
+                st.write(model.summary())
                 return 'Red',html_content["Red"]
 
         # Streamlit UI setup
