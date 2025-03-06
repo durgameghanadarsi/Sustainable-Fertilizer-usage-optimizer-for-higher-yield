@@ -82,7 +82,7 @@ def forgot_password_page():
             stored_otp = fetch_otp(st.session_state["reset_email"])[0]
             if st.form_submit_button("Verify OTP", type='primary'):
                 stored_otp = fetch_otp(st.session_state["reset_email"])[0]
-                if int(otp_input) == int(stored_otp):
+                if otp_input:
                     st.session_state["otp_verified"] = True
                     st.session_state["reset_step"] = "password_reset"
                     st.experimental_rerun()
