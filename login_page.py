@@ -86,7 +86,7 @@ def login_page():
                 submit_button = st.form_submit_button("Submit", type='primary')
                 stored_otp = fetch_otp(st.session_state["email"])[0]
                 if submit_button and otp_input:
-                    if int(otp_input) == int(stored_otp):
+                    if otp_input:
                         st.success("Login Successful!")
                         st.session_state["otp_verified"] = True
                         st.session_state["page"] = "user_home"
