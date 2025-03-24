@@ -2,6 +2,7 @@ import streamlit as st
 import random
 from db_manager import validate_user, fetch_otp, update_otp
 import smtplib
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 def send_alert_email(to_email, subject, message, from_email, from_password):
@@ -80,19 +81,36 @@ def login_page():
                         st.error("Invalid Email or Password!")
 
         else:  # OTP Verification Form
-            with st.form(key="otp_form"): 
+            with st.form(key="otp_form"):
                 st.title("Enter OTP")
+                
+                # Timer Display
+                timer_placeholder = st.empty()
                 otp_input = st.text_input("Enter OTP")
                 submit_button = st.form_submit_button("Submit", type='primary')
+
+                # Fetch stored OTP
                 stored_otp = fetch_otp(st.session_state["email"])[0]
+                
                 if submit_button and otp_input:
-                    if otp_input:
+                    if int(otp_input) == int(stored_otp):
                         st.success("Login Successful!")
                         st.session_state["otp_verified"] = True
                         st.session_state["page"] = "user_home"
                         st.experimental_rerun()
                     else:
                         st.error("Invalid OTP! Try again.")
+
+            # Timer Logic (runs after form submission)
+            if "otp_verified" not in st.session_state or not st.session_state["otp_verified"]:
+                timer = 30  # 30-second countdown
+                while timer >= 0:
+                    timer_placeholder.subheader(f"Time remaining: {timer} sec")
+                    time.sleep(1)
+                    timer -= 1
+                # Redirect to login page after timer ends
+                update_otp(st.session_state["email"], None)
+                st.session_state["otp_sent"] = False
 
         # Redirect after OTP verification
         if st.session_state.get("otp_verified"):

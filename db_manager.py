@@ -16,19 +16,27 @@ def init_db():
             sky TEXT,
             rain INTEGER,
             otp INTEGER,
+            language TEXT,
             password TEXT
         )
     """)
-
+    #create table to store fertilizer details
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS fertilizer (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT,
+            name TEXT
+        )
+    """)
     conn.commit()
     conn.close()
 
 # Register a new user
-def register_user(name, email,location, temp, humd, sky, rain,otp, password):
+def register_user(name, email,location, temp, humd, sky, rain,otp,language, password):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     try:
-        cursor.execute("INSERT INTO users (name, email, location, temp, humd, sky, rain, otp, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (name, email, location, temp, humd, sky, rain, otp, password))
+        cursor.execute("INSERT INTO users (name, email, location, temp, humd, sky, rain, otp,language, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)", (name, email, location, temp, humd, sky, rain, otp,language, password))
         conn.commit()
         return True
     except:
@@ -53,13 +61,12 @@ def valid_user(email):
     conn.close()
     return user
 
-def change_location(email,location,temp,humd,sky,rain):
+def change_location(email,location,temp,humd,sky,rain,language):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
-    cursor.execute("UPDATE users SET location = ?, temp = ?, humd = ?, sky = ?, rain = ? WHERE email = ?", (location,temp,humd,sky,rain,email))
+    cursor.execute("UPDATE users SET location = ?, temp = ?, humd = ?, sky = ?, rain = ?, language = ? WHERE email = ?", (location,temp,humd,sky,rain,language,email))
     conn.commit()
     conn.close()
-
 
 def fetch_details(email):
     conn = sqlite3.connect("users.db")
@@ -98,3 +105,17 @@ def fetch_password(email):
     password = cursor.fetchone()
     conn.close()
     return password
+
+def add_fertilizer(email,name):
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO fertilizer (email, name) VALUES (?, ?)", (email, name))
+    conn.commit()
+    conn.close()
+def fetch_fertilizer(email):
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT name FROM fertilizer WHERE email = ?", (email,))
+    fertilizer = cursor.fetchall()
+    conn.close()
+    return fertilizer

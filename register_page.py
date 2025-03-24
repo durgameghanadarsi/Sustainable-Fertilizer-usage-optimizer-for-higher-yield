@@ -32,10 +32,12 @@ def register_page():
         st.title("Sign Up🔐")
 
         # Form Fields
-        name = st.text_input("Name")
         col1,col2=st.columns(2)
-        email = col1.text_input("Email")
-        location = col2.text_input("Location📍")
+        name = col1.text_input("Name")
+        email = col2.text_input("Email")
+        col1,col2=st.columns(2)
+        location = col1.text_input("Location📍")
+        language=col2.selectbox('Select Language',['English','Telugu'])
         otp=None
         col1, col2 = st.columns(2)
         password = col1.text_input("Password", type="password")
@@ -68,7 +70,7 @@ def register_page():
             elif password != retype_password:
                 st.error("Passwords do not match!")
             else:
-                if register_user(name, email,location,temp,humd,sky,rain,otp, password):
+                if register_user(name, email,location,temp,humd,sky,rain,otp,language, password):
                     st.markdown(
                         """
                         <div style="text-align: center; padding: 1px; background-color: green; border-radius: 1px; border: 1.5px solid black; margin-bottom: 20px;">
