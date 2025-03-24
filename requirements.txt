@@ -4,7 +4,7 @@ streamlit_option_menu==0.3.6
 scikit-learn==1.3.0
 numpy
 tensorflow==2.17.0
-plotly
+plotly==5.18.0
 gdown
 pyowm==3.3.0
 googletrans==4.0.0rc1
